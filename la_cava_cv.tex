@@ -1,13 +1,13 @@
 \documentclass[10pt]{article}
-\usepackage{sectsty}
-\sectionfont{\fontsize{12}{14}\selectfont}
+%\usepackage{sectsty}
+%\sectionfont{\fontsize{12}{14}\selectfont}
 \usepackage{array, xcolor, lipsum, bibentry}
 \usepackage[margin=3cm]{geometry} 
 \definecolor{lightgray}{gray}{0.8}
 \newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
 \newcolumntype{R}{p{0.79\textwidth}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
-\usepackage[backend=bibtex,bibstyle=authoryear,sorting=ydnt,maxbibnames=99,url=false]{biblatex}
+\usepackage[backend=bibtex,bibstyle=authoryear,sorting=ydnt,maxbibnames=99,url=false,isbn=false]{biblatex}
 \usepackage{tabularx}
 %\AtEveryBibitem{
 %\ifentrytype{article}{
@@ -30,7 +30,7 @@
 %\AtEveryBibitem{\ifthenelse{\ifentrytype{book}\OR\ifentrytype{collection}\OR\if‌​entrytype{incollection}}{ \clearfield{url}\clearfield{urldate}\clearfield{review}\clearfield{series}}{}}
 \bibliography{La_Cava} 
 \renewcommand{\arraystretch}{1.2}\addtolength{\tabcolsep}{.5pt}
-\renewcommand{\familydefault}{\sfdefault}
+%\renewcommand{\familydefault}{\sfdefault}
 %\usepackage[T1]{fontenc}
 %\usepackage{textcomp}
 %\usepackage[scaled=0.87]{berasans}
@@ -42,7 +42,7 @@
 \begin{tabular}{r}
 %\hspace{0.5\textwidth}
 {\large \bf William La Cava} \\ \hline
-[122 Hawley St., Northampton, MA, 01060][413-320-0544][wlacava@umass.edu] \\
+[Richards Building D207-04, Philadelphia, PA 19104][413-320-0544][lacava@upenn.edu] \\
 %122 Hawley St.\\Northampton, MA 01060\\$+$1 (413) 320-0544\\wlacava@umass.edu\\
 {\it \today} 
 \end{tabular}
@@ -65,14 +65,18 @@
  
 \section*{Education}
 \begin{tabular}{L!{\VRule}R}
-2012 - today&PhD Candidate, Mechanical Engineering, University of Massachusetts Amherst\\
+2012 - 2016& Ph.D., Mechanical Engineering, University of Massachusetts Amherst\\
 2009 - 2010& M.Eng., Mechanical Engineering, Cornell University \\
 2005 - 2009& B.S., Mechanical Engineering, Cornell University 
 \end{tabular}
  
 \section*{Research Experience}
 \begin{tabular}{L!{\VRule}R}
-2012 - today & {\bf PhD Candidate, University of Massachusetts Amherst} \\
+2016 - today & {\bf Post-Doctoral Fellow, Epistasis Laboratory, University of Pennsylvania} \\
+& {\it Sponsor: Jason Moore} \\
+& Institute for Bioinformatics \\
+& Fellow, Warren Center for Network and Data Sciences \\
+2012 - 2016 & {\bf PhD Candidate, University of Massachusetts Amherst} \\
 & {\it Committee: Kourosh Danai, Lee Spector, Matthew Lackner} \\
 & Dissertation: Automatic model form development and adaptation \\
 & NSF IGERT fellow researching offshore wind energy applications \\
@@ -106,6 +110,9 @@ Jun--Aug 2015& {\bf Visiting Researcher, Laboratory of Agent Modeling, Universit
  
 \section*{Awards}
 \begin{tabular}{L!{\VRule}R}
+2016& Post-Doctoral Fellowship, Warren Center for Network and Data Sciences \\
+2016& Student Travel Grant, Genetic and Evolutionary Computation Conference\\
+2015& Student Travel Grant, ASME Dynamic Systems and Controls Conference \\
 2015& Best Paper Nomination, Genetic and Evolutionary Computation Conference (GECCO) \\
 2014&XSEDE Startup Allocation Award: Automatic Identification of Dynamic Models for Complex Systems (PI) \\
 2012& NSF Fellowship, IGERT: Offshore Wind Energy Engineering, Environmental Science, and Policy \\
@@ -127,9 +134,8 @@ Jun--Aug 2015& {\bf Visiting Researcher, Laboratory of Agent Modeling, Universit
 \nocite{*}
 \printbibliography[title={\normalsize Video},keyword=video,notkeyword=inreview]
 \nocite{*}
-\printbibliography[title={\normalsize Presentations},type=presentation,notkeyword=inreview]
+\printbibliography[title={\normalsize Other Presentations},keyword=presentation,notkeyword=inreview]
 \nocite{*}
-
 \section*{Service}
 \begin{tabular}{L!{\VRule}R}
 Organizer& Collaboration with University of Maine's Advanced Structures and Composites Center (2014) \\

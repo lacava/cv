@@ -7,7 +7,8 @@
 \newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
 \newcolumntype{R}{p{0.79\textwidth}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
-\usepackage[backend=bibtex,bibstyle=authoryear,sorting=ydnt,maxbibnames=99,url=false,isbn=false]{biblatex}
+\usepackage[backend=bibtex,bibstyle=authoryear,sorting=ydnt,maxbibnames=99,url=false,isbn=false,dashed=false]{biblatex} %
+\DeclareFieldFormat{extrayear}{}
 \usepackage{tabularx}
 %\AtEveryBibitem{
 %\ifentrytype{article}{
@@ -73,8 +74,8 @@
 \section*{Research Experience}
 \begin{tabular}{L!{\VRule}R}
 2016 - today & {\bf Post-Doctoral Fellow, Epistasis Laboratory, University of Pennsylvania} \\
-& {\it Sponsor: Jason Moore} \\
-& Institute for Bioinformatics \\
+& {\it Advisor: Jason Moore} \\
+& Institute for Biomedical Informatics \\
 & Fellow, Warren Center for Network and Data Sciences \\
 2012 - 2016 & {\bf PhD Candidate, University of Massachusetts Amherst} \\
 & {\it Committee: Kourosh Danai, Lee Spector, Matthew Lackner} \\
@@ -98,13 +99,16 @@ Jun--Aug 2015& {\bf Visiting Researcher, Laboratory of Agent Modeling, Universit
 2007 - 2008& {\bf Independent Research, Cornell Computational Synthesis Laboratory} \\
 & {\it Advisor: Hod Lipson}\\
 &Built and trained a mobile robot with a 5 degree-of-freedom arm and gripper to retrieve objects \\
-&Built robotic platforms for an artificial intelligence course\\
 \end{tabular}
  
 \section*{Teaching Experience}
 \begin{tabular}{L!{\VRule}R}
-2014 - 2015& {\bf Teaching Assistant \& Lecturer, University of Massachusetts Amherst} \\
-& I have taught lectures in the following courses: System Dynamics; Control Systems Laboratory; Offshore Wind Design\\
+2007& {\bf Lab Technician, Cornell University}\\
+& Designed and built robotic platforms for a graduate level artificial intelligence course\\
+2014 - 2015& {\bf Teaching Assistant, University of Massachusetts Amherst} \\
+& Control Systems Laboratory \\
+2014 - 2016& {\bf Guest Lecturer, University of Massachusetts Amherst}\\
+& Courses: System Dynamics, Control Systems Laboratory and Offshore Wind Design\\
 & Topics: linearization; state-space representations; system identification; parameter estimation; and wind turbine control design \\
 \end{tabular}
  
@@ -124,15 +128,19 @@ Jun--Aug 2015& {\bf Visiting Researcher, Laboratory of Agent Modeling, Universit
 \nocite{*}
 \printbibliography[title={\normalsize Journal Articles},type=article,notkeyword=inreview]
 \nocite{*}
-\printbibliography[title={\normalsize Conference Proceedings},type=inproceedings,notkeyword=inreview]
+\printbibliography[title={\normalsize Peer-reviewed Conference Proceedings},type=inproceedings,notkeyword=inreview]
 \nocite{*}
-\printbibliography[title={\normalsize Book Chapters},type=incollection,notkeyword=inreview]
+\printbibliography[title={\normalsize Book Chapters},type=incollection,notkeyword=inreview,notkeyword=thesis]
+\nocite{*}
+\printbibliography[title={\normalsize Dissertations},type=incollection,keyword=thesis,notkeyword=inreview]
 \nocite{*}
 \printbibliography[title={\normalsize Technical Reports},type=report,notkeyword=inreview]
 \nocite{*}
 \printbibliography[title={\normalsize Software},keyword=software,notkeyword=inreview]
 \nocite{*}
 \printbibliography[title={\normalsize Video},keyword=video,notkeyword=inreview]
+\nocite{*}
+\printbibliography[title={\normalsize Invited Talks},keyword=invited,notkeyword=inreview]
 \nocite{*}
 \printbibliography[title={\normalsize Other Presentations},keyword=presentation,notkeyword=inreview]
 \nocite{*}
@@ -145,6 +153,7 @@ Member & Association of Computing Machinery (ACM) \\
 &American Institute of Aeronautics and Astronautics (AIAA) \\
 Referee & Renewable Energy Journal \\
 & Wind Energy Journal \\
+& Information Journal \\
 &AIAA Wind Energy Symposium (2014) \\
 &ASME Dynamic Systems and Controls Conference (2015) \\
 \end{tabular}

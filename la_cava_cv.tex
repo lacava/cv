@@ -7,61 +7,76 @@
 \newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
 \newcolumntype{R}{p{0.79\textwidth}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
-\usepackage[backend=bibtex,bibstyle=authoryear,sorting=ydnt,maxbibnames=99,url=false,isbn=false,dashed=false]{biblatex} %
+\usepackage[backend=bibtex,bibstyle=numeric,maxbibnames=99,url=false,isbn=false,defernumbers=true,sorting=ydnt]{biblatex} %
 \DeclareFieldFormat{extrayear}{}
+\renewbibmacro{in:}{}
+\renewbibmacro{in}{}
 \usepackage{tabularx}
-%\AtEveryBibitem{
-%\ifentrytype{article}{
-%    \clearfield{url}%
-%    \clearfield{urldate}%
-%}{}
-%\ifentrytype{incollection}{
-%    \clearfield{url}%
-%    \clearfield{urldate}%
-%}{}
-%\ifentrytype{inproceedings}{
-%    \clearfield{url}%
-%    \clearfield{urldate}%
-%}{}
-%\ifentrytype{report}{
-%    \clearfield{url}%
-%    \clearfield{urldate}%
-%}{}
-%}
-%\AtEveryBibitem{\ifthenelse{\ifentrytype{book}\OR\ifentrytype{collection}\OR\if‌​entrytype{incollection}}{ \clearfield{url}\clearfield{urldate}\clearfield{review}\clearfield{series}}{}}
 \bibliography{La_Cava} 
 \renewcommand{\arraystretch}{1.2}\addtolength{\tabcolsep}{.5pt}
-%\renewcommand{\familydefault}{\sfdefault}
-%\usepackage[T1]{fontenc}
-%\usepackage{textcomp}
-%\usepackage[scaled=0.87]{berasans}
-\usepackage{hyperref}
 
+%%%
+% Make my name bold 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xpatch}% or use http://tex.stackexchange.com/a/40705
+
+\def\makenamesetup{%
+  \def\bibnamedelima{~}%
+  \def\bibnamedelimb{ }%
+  \def\bibnamedelimc{ }%
+  \def\bibnamedelimd{ }%
+  \def\bibnamedelimi{ }%
+  \def\bibinitperiod{.}%
+  \def\bibinitdelim{~}%
+  \def\bibinithyphendelim{.-}}    
+\newcommand*{\makename}[3]{\begingroup\makenamesetup\xdef#1{#2, #3}\endgroup}
+
+\newbibmacro*{name:bold}[2]{%
+  \makename{\currname}{#1}{#2}%
+  \makename{\findname}{\lastname}{\firstname}%
+  \makename{\findinit}{\lastname}{\firstinit}%
+  \ifboolexpr{ test {\ifdefequal{\currname}{\findname}}
+            or test {\ifdefequal{\currname}{\findinit}} }{\bfseries}{}}
+
+\newcommand*{\boldname}[3]{%
+  \def\lastname{#1}%
+  \def\firstname{#2}%
+  \def\firstinit{#3}}
+\boldname{}{}{}
+
+\xpretobibmacro{name:family}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:given-family}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:family-given}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
+
+\xapptobibmacro{name:family}{\endgroup}{}{}
+\xapptobibmacro{name:given-family}{\endgroup}{}{}
+\xapptobibmacro{name:family-given}{\endgroup}{}{}
+\xapptobibmacro{name:delim}{\endgroup}{}{}
+
+\boldname{La~Cava}{William}{W}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
+}
 
 \begin{document}
-\begin{flushright}
-\begin{tabular}{r}
+\noindent \begin{tabularx}{\textwidth}{ll}
 %\hspace{0.5\textwidth}
 {\large \bf William La Cava} \\ \hline
-[Richards Building D207-04, Philadelphia, PA 19104][413-320-0544][lacava@upenn.edu] \\
+{\it \today} \\
+Office & Richards Building D207-04 \\
+&3700 Hamilton Walk \\ 
+&Philadelphia, PA 19104 \\ 
+Email & \texttt{lacava@upenn.edu} \\
+Website & \href{http://williamlacava.com}{\texttt{williamlacava.com}} \\ 
 %122 Hawley St.\\Northampton, MA 01060\\$+$1 (413) 320-0544\\wlacava@umass.edu\\
-{\it \today} 
-\end{tabular}
-\end{flushright}
-%\vspace{1em}
-%\begin{minipage}[ht]{0.48\textwidth}
-%Main Road 25\\
-%City 12345\\
-%State of Sabotage
-%\end{minipage}
-%\begin{minipage}[ht]{0.48\textwidth}
-%Nonlandian\\
-%January 3rd, 2020\\
-%+12 34 56 789
-%\end{minipage}
-%\vspace{20pt}
- 
-%\section*{Objective}
+
+\end{tabularx}
 
  
 \section*{Education}
@@ -71,16 +86,27 @@
 2005 - 2009& B.S., Mechanical Engineering, Cornell University 
 \end{tabular}
  
+\section*{Research Interests}
+Biomedical informatics, 
+machine learning, 
+data science, 
+genetic and evolutionary computation,  
+dynamical systems, 
+wind energy, 
+artificial intelligence and artificial life
+ 
 \section*{Research Experience}
+
 \begin{tabular}{L!{\VRule}R}
-2016 - today & {\bf Post-Doctoral Fellow, Epistasis Laboratory, University of Pennsylvania} \\
+2019 -  & {\bf Consultant, National Institute on Aging, National Institutes of Health} \\
+& Division of Geriatrics and Clinical Gerontology \\
+2016 -  & {\bf Postdoctoral Fellow, Epistasis Laboratory, University of Pennsylvania} \\
 & {\it Advisor: Jason Moore} \\
 & Institute for Biomedical Informatics \\
 & Fellow, Warren Center for Network and Data Sciences \\
-2012 - 2016 & {\bf PhD Candidate, University of Massachusetts Amherst} \\
+2012 - 2016 & {\bf PhD Student, University of Massachusetts Amherst} \\
 & {\it Committee: Kourosh Danai, Lee Spector, Matthew Lackner} \\
-& Dissertation: Automatic model form development and adaptation \\
-& NSF IGERT fellow researching offshore wind energy applications \\
+& Fellow, NSF IGERT Offshore Wind Energy Program \\
 %I research local search methods for topological search of model structures. I have developed both gradient-based and symbolic regression methods for formulating succinct and accurate models of complex systems. As an NSF IGERT fellow studying offshore wind energy, I have applied these methods to the identification of new models of wind turbine dynamics, vortex-induced vibration, and bald eagle behavior around wind farms, in addition to providing software to other researchers at UMass. \\ 
 Jun--Aug 2015& {\bf Visiting Researcher, Laboratory of Agent Modeling, University of Lisbon} \\
 &{\it Hosts: Sara Silva, Leonardo Vanneschi} \\
@@ -92,78 +118,138 @@ Jun--Aug 2015& {\bf Visiting Researcher, Laboratory of Agent Modeling, Universit
 & Lead engineer for the Gearbox Reliability Collaborative, a consortium involved in wind turbine gearbox testing, data analysis, and numerical modeling \\
 & Designed and conducted drivetrain simulation and testing programs for a 3 MW wind turbine R\&D project \\
 %& I led the modeling and analysis team of the Gearbox Reliability Collaborative (GRC). Work involved wind turbine gearbox testing, data analysis, and numerical modeling. I collaborated with industry partners to study gearbox reliability issues. I also lead a drivetrain simulation and testing program for a 3 MW wind turbine R\&D project.\\
+\end{tabular}
+
+\noindent \begin{tabular}{L!{\VRule}R}
 2008 - 2010& {\bf Lead Engineer of Mechanical Power Systems, Cornell 100+ MPG Team} \\
 & {\it Advisor: Albert George} \\
-& Design, fabrication and testing for a hybrid-electric vehicle that competed in the Automotive X-Prize and won the 2011 Green Grand Prix, achieving over 120 MPG \\
+& Design, fabrication and testing for a hybrid-electric vehicle that competed in the Automotive X-Prize and won the 2011 Green Grand Prix, achieving over 120 MPG equivalent\\
 %& I oversaw a team of 7 engineers in drivetrain design, fabrication and testing for a hybrid-electric vehicle that competed in the Automotive X-Prize. Designed and fabricated an electric drivetrain, a regenerative braking system, and a turbo-diesel charging system. The four-person sedan took first prize at the Green Grand Prix competition in 2011, achieving over 120 MPG. \\
 2007 - 2008& {\bf Independent Research, Cornell Computational Synthesis Laboratory} \\
 & {\it Advisor: Hod Lipson}\\
 &Built and trained a mobile robot with a 5 degree-of-freedom arm and gripper to retrieve objects \\
 \end{tabular}
  
-\section*{Teaching Experience}
+\section*{Grants \& Awards}
 \begin{tabular}{L!{\VRule}R}
-2007& {\bf Lab Technician, Cornell University}\\
-& Designed and built robotic platforms for a graduate level artificial intelligence course\\
-2014 - 2015& {\bf Teaching Assistant, University of Massachusetts Amherst} \\
-& Control Systems Laboratory \\
-2014 - 2016& {\bf Guest Lecturer, University of Massachusetts Amherst}\\
-& Courses: System Dynamics, Control Systems Laboratory and Offshore Wind Design\\
-& Topics: linearization; state-space representations; system identification; parameter estimation; and wind turbine control design \\
-\end{tabular}
- 
-\section*{Awards}
-\begin{tabular}{L!{\VRule}R}
-2016& Post-Doctoral Fellowship, Warren Center for Network and Data Sciences \\
+    2019& {\bf NIH Pathway to Independence Award (K99/R00) }\\
+        & National Library of Medicine\\
+        & Title: Multi-objective representation learning methods for interpretable predictions of patient outcomes using electronic health records 
+    (\href{https://projectreporter.nih.gov/project_info_description.cfm?aid=9744166&icde=0}{link})\\
+2019& Best Paper Nomination, Genetic and Evolutionary Computation Conference  \\
+2019& Winner, Best Informatics Abstract, DBEI and CCEB Research Day\\
+2018& Best Paper Nomination, Genetic and Evolutionary Computation Conference  \\
+2017& Best Paper Nomination, European Conference on Genetic Programming  \\
+2016& Postdoctoral Fellowship, Warren Center for Network and Data Sciences \\
 2016& Student Travel Grant, Genetic and Evolutionary Computation Conference\\
 2015& Student Travel Grant, ASME Dynamic Systems and Controls Conference \\
-2015& Best Paper Nomination, Genetic and Evolutionary Computation Conference (GECCO) \\
+2015& Best Paper Nomination, Genetic and Evolutionary Computation Conference  \\
 2014&XSEDE Startup Allocation Award: Automatic Identification of Dynamic Models for Complex Systems (PI) \\
 2012& NSF Fellowship, IGERT: Offshore Wind Energy Engineering, Environmental Science, and Policy \\
 2011& First Place, Cornell 100$+$ MPG Team, Green Grand Prix Competition \\
 \end{tabular}
 
 \section*{Publications}
-\printbibliography[title={\normalsize Articles in Review},keyword=inreview]
+\small{\href{https://scholar.google.com/citations?user=iZB7inEAAAAJ&hl=en}{Google Scholar} (citations: 975, h-index: 15, i10-index: 27) }
+
+\printbibliography[title={\normalsize Articles in Review},keyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Journal Articles},type=article,notkeyword=inreview]
+% \printbibliography[title={\normalsize Refereed Publications},keyword=peerreviewed,notkeyword=inreview,resetnumbers=true]
+% \nocite{*}
+\printbibliography[title={\normalsize Journal Papers},type=article,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Peer-reviewed Conference Proceedings},type=inproceedings,notkeyword=inreview]
+\printbibliography[title={\normalsize Peer-reviewed Conference Proceedings},type=inproceedings,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Book Chapters},type=incollection,notkeyword=inreview,notkeyword=thesis]
+\printbibliography[title={\normalsize Book Chapters},type=incollection,notkeyword=inreview,notkeyword=thesis,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Dissertations},type=incollection,keyword=thesis,notkeyword=inreview]
+\printbibliography[title={\normalsize Dissertations},type=incollection,keyword=thesis,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Technical Reports},type=report,notkeyword=inreview]
+\printbibliography[title={\normalsize Technical Reports},type=report,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Software},keyword=software,notkeyword=inreview]
+\printbibliography[title={\normalsize Press},keyword=press,notkeyword=inreview,notkeyword=thesis,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Video},keyword=video,notkeyword=inreview]
+\printbibliography[title={\normalsize Software},keyword=software,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Invited Talks},keyword=invited,notkeyword=inreview]
+\printbibliography[title={\normalsize Video},keyword=video,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
-\printbibliography[title={\normalsize Other Presentations},keyword=presentation,notkeyword=inreview]
+\printbibliography[title={\normalsize Invited Talks},keyword=invited,notkeyword=inreview,resetnumbers=true]
 \nocite{*}
+% \printbibliography[title={\normalsize Other Presentations},keyword=presentation,notkeyword=inreview,resetnumbers=true]
+% \nocite{*}
+% \printbibliography[title={\normalsize Other Conference Posters},keyword=poster,notkeyword=inreview,resetnumbers=true]
+% \nocite{*}
+
+\section*{Teaching Experience}
+\begin{tabular}{L!{\VRule}R}
+2017 - & {\bf Guest Lecturer, University of Pennsylvania}\\
+& Courses: Data Science for Biomedical Informatics; Special Topics in Biomedical and Health Informatics \\
+& Topics: Supervised and unsupervised machine learning; nature-inspired computing \\
+2014 - 2016& {\bf Guest Lecturer, University of Massachusetts Amherst}\\
+& Courses: System Dynamics; Control Systems Laboratory; Offshore Wind Energy Design\\
+& Topics: linearization; state-space representations; system identification; parameter estimation; and wind turbine control design \\
+
+2014 - 2015& {\bf Teaching Assistant, University of Massachusetts Amherst} \\
+& Control Systems Laboratory \\
+2007& {\bf Lab Technician, Cornell University}\\
+& Designed and built robotic platforms for a graduate level artificial intelligence course\\
+\end{tabular}
+
+\section*{Mentoring Experience}
+\begin{tabular}{L!{\VRule}R}
+Jun 2017 - & {\bf Research Mentor, University of Pennsylvania}\\
+           & Students: 
+                Isabel Lee (B.S.);
+                Efe Ayhan (B.S.);
+                Max Roling (B.S.); 
+                Saurav Bose (M.S.);
+                Tilak Raj Singh (M.S.);
+                Rishabh Gupta (M.S.);
+                Sophia Moses (B.S.);
+                James Taggart (B.S.);
+                Srinivas Suri (M.S.)
+                \\
+                Jun - Aug 2015& {\bf NSF Research Experiences for Undergraduates (REU) Mentor, University of Massachusetts Amherst} \\
+& Student: Branch Vincent (B.S.) \\
+\end{tabular}
+
 \section*{Service}
 \begin{tabular}{L!{\VRule}R}
-Organizer& Collaboration with University of Maine's Advanced Structures and Composites Center (2014) \\
-& Gearbox Reliability Collaborative Annual Meeting, National Renewable Energy Laboratory (2011, 2012) \\
-Member & Association of Computing Machinery (ACM) \\
-& American Society of Mechanical Engineers (ASME) \\
-&American Institute of Aeronautics and Astronautics (AIAA) \\
-Referee & Renewable Energy Journal \\
-& Wind Energy Journal \\
-& Information Journal \\
-&AIAA Wind Energy Symposium (2014) \\
-&ASME Dynamic Systems and Controls Conference (2015) \\
+    Organizer 
+        & Good Benchmarking Practices for Evolutionary Computation, GECCO and PPSN Workshop (2020) \\
+        & New Standards for Benchmarking in Evolutionary Computation Research, GECCO Workshop (2017-2019) \\
+        & Collaboration with University of Maine's Advanced Structures and Composites Center (2014) \\
+        & Gearbox Reliability Collaborative Annual Meeting, National Renewable Energy Laboratory (2011, 2012) \\
+    Committee Member 
+        & International Workshop on Benchmarking of Computational Intelligence Algorithms, ICACI (2018) \\
+    Member 
+        & Association of Computing Machinery (ACM) \\
+        & International Society for Computational Biology (ISCB) \\
+        & American Society of Mechanical Engineers (ASME) \\
+        & American Institute of Aeronautics and Astronautics (AIAA) \\
+    Referee 
+        & Pacific Symposium on Biocomputing\\
+        & PLOS ONE \\
+        & Artificial Life Journal \\
+        & Genetic and Evolutionary Computation Conference \\
+        & European Conference on Genetic Programming \\
+        & Genetic Programming and Evolvable Machines \\
+        & IEEE Transactions on Neural Networks and Learning Systems\\
+        & IEEE Congress on Evolutionary Computation \\
+        & Swarm and Evolutionary Computation \\
+        & Information Journal \\
+        & Wind Energy Journal \\
+        & Renewable Energy Journal \\
+        & AIAA Wind Energy Symposium (2014) \\
+        & ASME Dynamic Systems and Controls Conference (2015) \\
 \end{tabular}
 
 \section*{Volunteer \& Outreach Activities}
 \begin{tabular}{L!{\VRule}R}
-Jun - Aug 2015& {\bf NSF REU Mentor} \\
-& Mentored an undergraduate summer project: Using genetic programming to automatically develop models from observational data\\
+2019& Green Labs participant, Perelman School of Medicine\\
+2019& Volunteer, Love Your Park Week, Fairmount Park Conservancy\\
+2016& {\bf Science Fair Judge, Hampshire Regional High School} \\
 2013 - 2014& {\bf Invited Science Teacher, Four Rivers Charter School}\\
-& Taught two classes on wind energy to high school students\\
+& Taught classes on wind energy to high school students\\
 2011 - 2012& {\bf Volunteer, Boulder Food Rescue}\\
 & This organization has saved hundreds of thousands of pounds of left over food from grocery stores and bakeries and delivered it to homeless shelters and other community food stations. \\
 %2005 - 2010& Vice President Fanclub Collective. Music promotion agency in Ithaca, NY \\
@@ -174,11 +260,10 @@ Jun - Aug 2015& {\bf NSF REU Mentor} \\
 \begin{tabular}{L!{\VRule}R}
 Film & I write, direct, and produce short fictional films, including: \\
 & ``MADG" (2014), {\it Sound on Sound Film Festival} (premiere), {\it Florence Night Out} \\
-& ``Vacuumland Trilogy" (2008), {\it The Project Competition} \\
+& ``Vacuumland Trilogy" (2008), {\it The Project TV Competition} \\
 Music & VP, Fanclub Collective, a music promotion agency in Ithaca, NY (2005 - 2010)\\
-& I have written, recorded, and produced several albums \\
-& Co-founder of a small record label that operates in Denver \\
-Language & Spanish (advanced), Portuguese and Italian (beginner) \\
-Sports & rock climbing, soccer
+& I write, record, and produce music \\
+Language & Spanish (advanced), Italian (beginner) \\
+Sports & Muay Thai, rock climbing, soccer
 \end{tabular}
 \end{document}

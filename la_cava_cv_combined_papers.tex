@@ -14,11 +14,6 @@
 \usepackage{tabularx}
 \bibliography{La_Cava} 
 \renewcommand{\arraystretch}{1.2}\addtolength{\tabcolsep}{.5pt}
-
-%%%
-% Make my name bold 
-\input{bold_name.tex}
-%%%
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
 	citecolor=blue,
@@ -26,14 +21,17 @@
 	urlcolor=blue
 }
 
+\input{bold_name.tex} % makes my name bold
+
 \begin{document}
-\input{contact.tex} 
-\input{education.tex}
-\input{research.tex}
-\input{awards.tex} 
-\input{publications.tex}
-\input{teaching.tex}
-\input{mentoring.tex}
-\input{service.tex}
+
+    \input{contact.tex} 
+    \input{education.tex}
+    \input{research.tex}
+    \input{awards.tex} 
+    \input{publications_combined.tex}
+    \input{teaching.tex}
+    \input{mentoring.tex}
+    \input{service.tex}
 
 \end{document}

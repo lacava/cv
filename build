@@ -1,0 +1,5 @@
+latexmk -f -pdf -interaction=nonstopmode la_cava_cv.tex
+latexmk -f -pdf -interaction=nonstopmode la_cava_cv.tex
+latexmk -f -pdf -interaction=nonstopmode la_cava_cv_combined_papers.tex
+latexmk -f -pdf -interaction=nonstopmode la_cava_cv_combined_papers.tex
+echo "Done."

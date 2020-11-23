@@ -1,8 +1,8 @@
 \documentclass[10pt]{article}
-%\usepackage{sectsty}
-%\sectionfont{\fontsize{12}{14}\selectfont}
+%\usepackage{sectsty} %\sectionfont{\fontsize{12}{14}\selectfont}
 \usepackage{array, xcolor, lipsum, bibentry}
 \usepackage[margin=3cm]{geometry} 
+\usepackage{tabularx}
 \definecolor{lightgray}{gray}{0.8}
 \newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
 \newcolumntype{R}{p{0.79\textwidth}}
@@ -15,12 +15,16 @@
             defernumbers=true,
             sorting=ydnt]{biblatex} %
 \DeclareFieldFormat{extrayear}{}
+% get rid of "In:" in publications
 \renewbibmacro{in:}{}
-% \renewbibmacro{in}{}
-\usepackage{tabularx}
 \bibliography{La_Cava} 
 \renewcommand{\arraystretch}{1.2}\addtolength{\tabcolsep}{.5pt}
-
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+								   {-1.5ex \@plus -1ex \@minus -.2ex}%
+								   {2.3ex \@plus.2ex}%
+								   {\normalfont\large\bfseries}}
+\makeatother
 %%%
 % Make my name bold 
 \input{bold_name.tex}
@@ -36,13 +40,15 @@
 \AtEveryBibitem{\ifuseauthor{}{\clearname{author}}}
 
 \begin{document}
-\input{contact.tex} 
-\input{education.tex}
+\input{contact_short.tex} 
+
+\input{skills.tex}
 \input{research.tex}
-\input{awards.tex} 
-\input{publications.tex}
-\input{teaching.tex}
-\input{mentoring.tex}
-\input{service.tex}
+\input{education.tex}
+% \input{awards.tex} 
+% \input{publications.tex}
+% \input{teaching.tex}
+% \input{mentoring.tex}
+% \input{service.tex}
 
 \end{document}

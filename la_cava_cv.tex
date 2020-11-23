@@ -7,7 +7,13 @@
 \newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
 \newcolumntype{R}{p{0.79\textwidth}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
-\usepackage[backend=bibtex,bibstyle=numeric,maxbibnames=99,url=false,isbn=false,defernumbers=true,sorting=ydnt]{biblatex} %
+\usepackage[backend=bibtex,
+            bibstyle=numeric,
+            maxbibnames=99,
+            url=false,
+            isbn=false,
+            defernumbers=true,
+            sorting=ydnt]{biblatex} %
 \DeclareFieldFormat{extrayear}{}
 \renewbibmacro{in:}{}
 \renewbibmacro{in}{}
@@ -25,6 +31,9 @@
 	linkcolor=blue,
 	urlcolor=blue
 }
+%% suppress author name when useauthor=false
+\AtEveryCitekey{\ifuseauthor{}{\clearname{author}}}
+\AtEveryBibitem{\ifuseauthor{}{\clearname{author}}}
 
 \begin{document}
 \input{contact.tex} 

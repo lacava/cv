@@ -1,7 +1,16 @@
+echo "==========\nla_cava_cv.pdf...\n=========="
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv.tex
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv.tex
+
+echo "==========\nla_cava_cv_combined_papers.pdf...\n=========="
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv_combined_papers.tex
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv_combined_papers.tex
+
+echo "==========\nresume.pdf...\n=========="
 latexmk -f -pdf -interaction=nonstopmode resume.tex
 latexmk -f -pdf -interaction=nonstopmode resume.tex
+
+echo "==========\npaper_list.pdf...\n=========="
+latexmk -f -pdf -interaction=nonstopmode paper_list.tex
+latexmk -f -pdf -interaction=nonstopmode paper_list.tex
 echo "Done."

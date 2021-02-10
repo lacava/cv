@@ -1,0 +1,49 @@
+\documentclass[10pt]{article}
+%\usepackage{sectsty}
+%\sectionfont{\fontsize{12}{14}\selectfont}
+\usepackage{array, xcolor, lipsum, bibentry}
+\usepackage[margin=3cm]{geometry} 
+\definecolor{lightgray}{gray}{0.8}
+\newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
+\newcolumntype{R}{p{0.79\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\usepackage[backend=bibtex,
+            bibstyle=numeric,
+            maxbibnames=99,
+            url=false,
+            isbn=false,
+            defernumbers=true,
+            sorting=ydnt]{biblatex} %
+\DeclareFieldFormat{extrayear}{}
+\renewbibmacro{in:}{}
+% \renewbibmacro{in}{}
+\usepackage{tabularx}
+\bibliography{La_Cava} 
+\renewcommand{\arraystretch}{1.2}\addtolength{\tabcolsep}{.5pt}
+
+%%%
+% Make my name bold 
+\input{bold_name.tex}
+%%%
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+	citecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
+}
+%% suppress author name when useauthor=false
+\AtEveryCitekey{\ifuseauthor{}{\clearname{author}}}
+\AtEveryBibitem{\ifuseauthor{}{\clearname{author}}}
+
+\begin{document}
+\input{contact.tex} 
+\input{interests.tex}
+\input{education.tex}
+\input{research.tex}
+\input{awards.tex} 
+\input{publications_journal_first.tex}
+\input{teaching.tex}
+\input{mentoring.tex}
+\input{service.tex}
+
+\end{document}

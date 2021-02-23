@@ -6,6 +6,10 @@ echo "==========\nla_cava_cv_combined_papers.pdf...\n=========="
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv_combined_papers.tex
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv_combined_papers.tex
 
+echo "==========\nla_cava_cv_journal_first.pdf...\n=========="
+latexmk -f -pdf -interaction=nonstopmode la_cava_cv_journal_first.tex
+latexmk -f -pdf -interaction=nonstopmode la_cava_cv_journal_first.tex
+
 echo "==========\nla_cava_cv_highlighted.pdf...\n=========="
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv_highlighted.tex
 latexmk -f -pdf -interaction=nonstopmode la_cava_cv_highlighted.tex

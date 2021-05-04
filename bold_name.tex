@@ -1,8 +1,6 @@
 %%%
 % Make my name bold 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{xpatch}% or use http://tex.stackexchange.com/a/40705
-
 \def\makenamesetup{%
   \def\bibnamedelima{~}%
   \def\bibnamedelimb{ }%
@@ -12,31 +10,26 @@
   \def\bibinitperiod{.}%
   \def\bibinitdelim{~}%
   \def\bibinithyphendelim{.-}}    
-\newcommand*{\makename}[3]{\begingroup\makenamesetup\xdef#1{#2, #3}\endgroup}
-
-\newbibmacro*{name:bold}[2]{%
-  \makename{\currname}{#1}{#2}%
-  \makename{\findname}{\lastname}{\firstname}%
-  \makename{\findinit}{\lastname}{\firstinit}%
-  \ifboolexpr{ test {\ifdefequal{\currname}{\findname}}
-            or test {\ifdefequal{\currname}{\findinit}} }{\bfseries}{}}
+\newcommand*{\makename}[2]{\begingroup\makenamesetup\xdef#1{#2}\endgroup}
 
 \newcommand*{\boldname}[3]{%
   \def\lastname{#1}%
   \def\firstname{#2}%
   \def\firstinit{#3}}
-\boldname{}{}{}
+  \boldname{}{}{}{}
 
-\xpretobibmacro{name:family}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
-\xpretobibmacro{name:given-family}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
-\xpretobibmacro{name:family-given}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
-\xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
+% Patch new definitions
+\renewcommand{\mkbibnamegiven}[1]{%
+  \ifboolexpr{ ( test {\ifdefequal{\firstname}{\namepartgiven}} or test {\ifdefequal{\firstinit}{\namepartgiven}} ) and test {\ifdefequal{\lastname}{\namepartfamily}} }
+  {\mkbibbold{#1}}{#1}%
+}
 
-\xapptobibmacro{name:family}{\endgroup}{}{}
-\xapptobibmacro{name:given-family}{\endgroup}{}{}
-\xapptobibmacro{name:family-given}{\endgroup}{}{}
-\xapptobibmacro{name:delim}{\endgroup}{}{}
+\renewcommand{\mkbibnamefamily}[1]{%
+    \ifboolexpr{ ( test {\ifdefequal{\firstname}{\namepartgiven}} or test {\ifdefequal{\firstinit}{\namepartgiven}} ) and test {\ifdefequal{\lastname}{\namepartfamily}} }
+  {\mkbibbold{#1}}{#1}%
+}
 
-\boldname{La~Cava}{William}{W}
+\boldname{La\bibnamedelima Cava}{William}{W.} 
+% \boldname{LaCava}{William}{W.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%

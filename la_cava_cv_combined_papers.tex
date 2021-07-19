@@ -1,12 +1,22 @@
 \documentclass[10pt]{article}
-%\usepackage{sectsty}
-%\sectionfont{\fontsize{12}{14}\selectfont}
-\usepackage{array, xcolor, lipsum, bibentry}
+% margins
 \usepackage[margin=3cm]{geometry} 
+% section styles
+\usepackage[small]{titlesec}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titlespacing*{\subsection}{0.5em}{*1}{*1}
+% \usepackage{sectsty}
+% \sectionfont{\fontsize{11}{11}\selectfont}
+% \subsectionfont{\fontsize{11}{11}\selectfont}
+% \sectionfont{\normalsize}
+% \subsectionfont{\small}
+% table stuff
+\usepackage{array, xcolor, lipsum, bibentry}
 \definecolor{lightgray}{gray}{0.8}
-\newcolumntype{L}{>{\raggedleft}p{0.15\textwidth}}
-\newcolumntype{R}{p{0.79\textwidth}}
+\newcolumntype{L}{>{\raggedright}p{0.18\textwidth}}
+\newcolumntype{R}{p{0.81\textwidth}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\newcommand{\tab}{\hspace{2em}}
 \usepackage[backend=bibtex,bibstyle=numeric,maxbibnames=99,url=false,isbn=false,defernumbers=true,sorting=ydnt]{biblatex} %
 \DeclareFieldFormat{extrayear}{}
 \renewbibmacro{in:}{}
@@ -28,8 +38,10 @@
     \input{contact.tex} 
     \input{interests.tex}
     \input{education.tex}
-    \input{research.tex}
+    \input{positions.tex}
     \input{awards.tex} 
+    \newpage
+    \input{grants.tex} 
     \input{publications_combined.tex}
     \input{teaching.tex}
     \input{mentoring.tex}
